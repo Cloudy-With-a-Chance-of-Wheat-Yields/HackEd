@@ -207,6 +207,102 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5cf7bd912a1ce3438b66de74f58bde7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &643545521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 643545523}
+  - component: {fileID: 643545522}
+  m_Layer: 0
+  m_Name: Data Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &643545522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643545521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48b433cdd637ef64599e82bb63cb19fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fltMaxTemp:
+  - 0
+  - 4
+  - 6
+  - 10
+  - 14
+  - 20
+  - 24
+  - 26
+  - 26
+  - 20
+  - 10
+  - 8
+  fltMinTemp:
+  - 0
+  - -5
+  - -2
+  - 0
+  - 2
+  - 5
+  - 10
+  - 10
+  - 12
+  - 7
+  - 5
+  - 2
+  fltRain:
+  - 10
+  - 30
+  - 30
+  - 40
+  - 30
+  - 20
+  - 20
+  - 20
+  - 30
+  - 30
+  - 20
+  - 20
+  fltRainTime:
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
+--- !u!4 &643545523
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643545521}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1098990093
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +439,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc44c0e6485949438d8ce837506b9c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataManager: {fileID: 643545522}
+  intMonth: 0
+  strMonth:
+  - 
+  - January
+  - February
+  - March
+  - April
+  - May
+  - June
+  - July
+  - August
+  - September
+  - October
+  - November
+  - December
+  strCurrentMonth: 
+  fltMaxTempCur: 0
+  fltMinTempCur: 0
+  fltRainCur: 0
+  fltRainDurCur: 0
+  fltGrowthMonth: 0
+  fltGrowthCulm: 0
+  fltHealthMonth: 0
+  fltHealthCulm: 0
 --- !u!1 &2033851579
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,3 +594,4 @@ SceneRoots:
   - {fileID: 1345112668}
   - {fileID: 77962948}
   - {fileID: 558511548}
+  - {fileID: 643545523}

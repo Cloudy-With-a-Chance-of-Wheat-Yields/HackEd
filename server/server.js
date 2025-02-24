@@ -16,19 +16,31 @@ const db = new pg.Pool({ connectionString: process.env.DATABASE_URL });
 // create my test endpoint
 app.get("/", (request, response) => response.json("Its working"));
 
-// POST endpoint
-app.post("/messages", async function (request, response) {
-  // get the request body (data from the form)
-  const { message, name } = request.body; // destructuring data
 
-  // make the query to the db
+app.get("/2021", async function (request, response) {
   const result = await db.query(
-    "INSERT INTO messages (name, message) VALUES ($1, $2)",
-    [name, message]
+    "SELECT * FROM weather_2021",
   );
+  response.json(result.rows);
+});
 
-  // send back the data from the db as a response
+app.get("/2022", async function (request, response) {
+  const result = await db.query(
+    "SELECT * FROM weather_2022",
+  );
+  response.json(result.rows);
+});
+app.get("/2023", async function (request, response) {
+  const result = await db.query(
+    "SELECT * FROM weather_2023",
+  );
   response.json(result);
+});
+app.get("/2024", async function (request, response) {
+  const result = await db.query(
+    "SELECT * FROM weather_2024",
+  );
+  response.json(result.rows);
 });
 
 // start the server

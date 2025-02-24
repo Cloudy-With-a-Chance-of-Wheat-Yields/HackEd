@@ -2,15 +2,30 @@ using UnityEngine;
 
 public class ButtonManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Material mat;
+    public void Sow()
     {
-        
+        Debug.Log("Sow Seeds");
+        Hightlight();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Spray()
     {
-        
+        Debug.Log("Spray pestercide");
+    }
+
+    public void Irrigate()
+    {
+        Debug.Log("Irrigate the field");
+    }
+
+    public void Harvest()
+    {
+        Debug.Log("Harvest yeild");
+
+    }
+    void Hightlight()
+    {
+        mat.color = Color.white;
     }
 }

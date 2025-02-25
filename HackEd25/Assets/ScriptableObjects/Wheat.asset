@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c79b8ec199fdd264895f4fcc45b6fa35, type: 3}
+  m_Name: Wheat
+  m_EditorClassIdentifier: 
+  strName: Wheat
+  fltMonthGrow:
+  - 0
+  - 0
+  - 0.5
+  - 0.5
+  - 1
+  - 1
+  - 1
+  - 1.5
+  - 1.5
+  - 1.5
+  - 1.5
+  - 2
+  - 1
+  fltRainMin: 0.2
+  fltRainMax: 5
+  fltTempMin: 6
+  fltTempMax: 30
+  fltTempGrowEffect: 1.5
+  fltRainGrowEffect: 0.3
+  fltRainEffect: 0.05
+  fltTempEffect: 0.01
+  fltRainHarmUpperThreshold: 15
+  fltRainHarmLowerThreshold: 0.2
+  fltTempHarmThreshold: 30
+  fltDiseasedChance: 2

@@ -8,6 +8,8 @@ public class WeatherManager : MonoBehaviour
 
     [Header("Data")]
     [SerializeField] DataManager dataManager;
+    [SerializeField] DataImport dataImport;
+    [SerializeField] GameOver gameOver;
     [SerializeField] int intMonth;
     [SerializeField] string[] strMonth;
     [SerializeField] int[] intWeekStartforMonth;
@@ -19,10 +21,10 @@ public class WeatherManager : MonoBehaviour
     [SerializeField] Crop crop;
     [SerializeField] Crop debugCrop;
     [Header("Weather Input")]
-    [SerializeField] float[] fltMaxTempCur = new float[5];
-    [SerializeField] float[] fltMinTempCur = new float[5];
-    [SerializeField] float[] fltRainCur = new float[5];
-    [SerializeField] float[] fltRainDurCur = new float[5];
+    public float[] fltMaxTempCur = new float[5];
+    public float[] fltMinTempCur = new float[5];
+    public float[] fltRainCur = new float[5];
+    public float[] fltRainDurCur = new float[5];
 
     [Header("Output")]
     public float fltGrowthMonth ;
@@ -48,7 +50,7 @@ public class WeatherManager : MonoBehaviour
          fltRainCur = new float[5];
          fltRainDurCur = new float[5];
         fltHealthCul = 1.0f;
-
+       
       
     }
 
@@ -90,6 +92,13 @@ public class WeatherManager : MonoBehaviour
     void FnNewMonth()
     {
         intMonth += 1;
+
+        if (intMonth >12)
+
+        {
+            gameOver.FnGameOver();
+
+        }
         strCurrentMonth = strMonth[intMonth];
 
 
@@ -122,11 +131,22 @@ public class WeatherManager : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
+            Debug.Log(dataImport.info[intWeekStartforMonth[intMonthTmp] + i].max_temperature);
 
+            fltMaxTempCur[i] = dataImport.info[intWeekStartforMonth[intMonthTmp] + i].max_temperature;
+            fltMinTempCur[i] = dataImport.info[intWeekStartforMonth[intMonthTmp] + i].min_temperature;
+            fltRainCur[i] = dataImport.info[intWeekStartforMonth[intMonthTmp] + i].total_precipitation;
+            fltRainDurCur[i] = dataImport.info[intWeekStartforMonth[intMonthTmp] + i].total_precipitation;
+
+
+
+            /*
             fltMaxTempCur[i] = dataManager.fltMaxTemp[intWeekStartforMonth[intMonthTmp] + i];
             fltMinTempCur[i] = dataManager.fltMinTemp[intWeekStartforMonth[intMonthTmp] + i];
             fltRainCur[i] = dataManager.fltRain[intWeekStartforMonth[intMonthTmp] + i];
             fltRainDurCur[i] = dataManager.fltRainTime[intWeekStartforMonth[intMonthTmp] + i];
+            */
+
 
         }
         fltGrowthMonth = 0;

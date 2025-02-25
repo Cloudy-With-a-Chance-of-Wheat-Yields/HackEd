@@ -4182,6 +4182,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1162162550}
     - target: {fileID: 7660583201329926565, guid: 96fb5028ab842f648814cd656798fdfd, type: 3}
+      propertyPath: fltDiseaseEffect
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7660583201329926565, guid: 96fb5028ab842f648814cd656798fdfd, type: 3}
       propertyPath: fltIrrigateWater
       value: 1
       objectReference: {fileID: 0}

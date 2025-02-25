@@ -7,9 +7,9 @@ public class PlantsGrowing : MonoBehaviour
     [Header("Values")]
     public float plantHealth;
     public float growthRate; 
-    public float growthY = 1;
-    public float growthX = 1;
-    public float growthZ = 1;
+    public float growthY;
+    public float growthX;
+    public float growthZ;
     public bool isDiseased = false;
     public bool highHeat = false;
 
@@ -18,7 +18,7 @@ public class PlantsGrowing : MonoBehaviour
     public GameObject plantPrefab;
     public Material plantMaterial;
 
-    public Interventions interventionsScript;
+    Interventions interventionsScript;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,7 +31,7 @@ public class PlantsGrowing : MonoBehaviour
 
         RefreshPlants();
 
-        //interventionsScript = transform.root.GetComponent<Interventions>();
+        interventionsScript = GetComponentInParent<Interventions>();
 
     }
 
@@ -39,22 +39,24 @@ public class PlantsGrowing : MonoBehaviour
     void Update()
     {
 
-        if(Input.GetKeyDown("Space"))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("calling from PlantsGrowing");
             RefreshPlants();
             if (highHeat == true) PlantWilting();
             if (isDiseased == true) PlantDisease();
-            interventionsScript.FnGrowToGrass();
+            
         }
     }
 
     // increase y scale of plant by multiplying height by plant health
     public void PlantGrowth()
     {
+        growthRate *= 10;
         growthY *= growthRate;
         growthX *= (growthRate/4);
         growthZ *= (growthRate/4);
-        plantPrefab.transform.localScale = new Vector3(1, growthY, 1);
+        plantPrefab.transform.localScale = new Vector3(growthX, growthY, growthZ);
     }
 
     public void RefreshPlants()

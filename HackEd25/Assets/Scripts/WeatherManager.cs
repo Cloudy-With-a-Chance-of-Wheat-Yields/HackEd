@@ -7,7 +7,7 @@ public class WeatherManager : MonoBehaviour
 
 
     [Header("Data")]
-    [SerializeField] DataManager dataManager;
+    //[SerializeField] DataManager dataManager;
     [SerializeField] DataImport dataImport;
     [SerializeField] GameOver gameOver;
     [SerializeField] int intMonth;
@@ -131,7 +131,7 @@ public class WeatherManager : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-            Debug.Log(dataImport.info[intWeekStartforMonth[intMonthTmp] + i].max_temperature);
+            
 
             fltMaxTempCur[i] = dataImport.info[intWeekStartforMonth[intMonthTmp] + i].max_temperature;
             fltMinTempCur[i] = dataImport.info[intWeekStartforMonth[intMonthTmp] + i].min_temperature;

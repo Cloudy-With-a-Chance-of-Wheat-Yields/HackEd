@@ -7,6 +7,8 @@ public class PlantsGrowing : MonoBehaviour
     public float growthRate; 
 
     public float growthY = 1;
+    public float growthX = 1;
+    public float growthZ = 1;
 
     public bool highHumidity = false;
     public bool highHeat = false;
@@ -22,7 +24,7 @@ public class PlantsGrowing : MonoBehaviour
     { 
         weatherManagerScript = FindFirstObjectByType<WeatherManager>().GetComponent<WeatherManager>();
         //plantHealth = weatherManagerScript.plantHealth;
-        plantHealth = 0.5f;
+        plantHealth = 1f;
         growthRate = 0.5f;
 
         RefreshPlants();
@@ -40,6 +42,8 @@ public class PlantsGrowing : MonoBehaviour
     public void PlantGrowth()
     {
         growthY *= growthRate;
+        growthX *= (growthRate/2);
+        growthZ *= (growthRate/2);
         plantPrefab.transform.localScale = new Vector3(1, growthY, 1);
     }
 

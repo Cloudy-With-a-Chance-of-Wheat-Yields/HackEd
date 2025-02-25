@@ -4,47 +4,72 @@ public class Interventions : MonoBehaviour
 {
 
     [SerializeField] WeatherManager weatherManager;
+    [SerializeField] Budget budget;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         weatherManager = GetComponent<WeatherManager>();
-
+        budget = FindFirstObjectByType<Budget>();
     }
 
     public void FnInterventionSow()
     {
-        weatherManager.isPlanted = true;
-        weatherManager.intMonthPlanted = -1;
-        Debug.Log("sowing function called");
-
-        Transform[] allChildren = GetComponentsInChildren<Transform>(true);
-        foreach (Transform child in allChildren)
+        budget.FnSowCharge();
+        // cost function
+        if (budget.isOperationAllowed)
         {
-            if (child.name == "Seed")
+
+
+            weatherManager.isPlanted = true;
+            weatherManager.intMonthPlanted = -1;
+            Debug.Log("sowing function called");
+
+            Transform[] allChildren = GetComponentsInChildren<Transform>(true);
+            foreach (Transform child in allChildren)
             {
-                child.gameObject.SetActive(true);
+                if (child.name == "Seed")
+                {
+                    child.gameObject.SetActive(true);
+                }
             }
         }
-
-       // cost function
+      
     }
 
     public void FnInterventionSpray()
     {
-        weatherManager.isSpray = true;
-        //cost function
+        budget.FnSprayCharge();
+        if (budget.isOperationAllowed)
+        {
+
+
+            weatherManager.isSpray = true;
+        }
+            //cost function
     }
 
     public void FnInterventionIrrigate()
     {
-        weatherManager.isIrrigate = true;
-        //cost function
+        budget.FnIrrigateCharge();
+        if (budget.isOperationAllowed)
+        {
+
+            weatherManager.isIrrigate = true;
+            //cost function
+        }
     }
     public void FnInterventionHarvest()
     {
-        weatherManager.isPlanted = false;
-        //cost function
-        // revenue 
+       budget.FnHarvestCharge();
+        if (budget.isOperationAllowed)
+        {
+
+            weatherManager.isPlanted = false;
+            //cost function
+            // revenue 
+            budget.FnHarvestRevenue(weatherManager.fltGrowthCul, weatherManager.fltHealthCul);
+
+        }
     }
 
     public void FnGrowToGrass()

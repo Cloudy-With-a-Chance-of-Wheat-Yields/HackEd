@@ -8,6 +8,7 @@ public class WeatherManager : MonoBehaviour
 
     [Header("Data")]
     [SerializeField] DataManager dataManager;
+    [SerializeField] DataImport dataImport;
     [SerializeField] int intMonth;
     [SerializeField] string[] strMonth;
     [SerializeField] int[] intWeekStartforMonth;
@@ -48,7 +49,7 @@ public class WeatherManager : MonoBehaviour
          fltRainCur = new float[5];
          fltRainDurCur = new float[5];
         fltHealthCul = 1.0f;
-
+       
       
     }
 
@@ -122,11 +123,22 @@ public class WeatherManager : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
+            Debug.Log(dataImport.info[intWeekStartforMonth[intMonthTmp] + i].max_temperature);
 
+            fltMaxTempCur[i] = dataImport.info[intWeekStartforMonth[intMonthTmp] + i].max_temperature;
+            fltMinTempCur[i] = dataImport.info[intWeekStartforMonth[intMonthTmp] + i].min_temperature;
+            fltRainCur[i] = dataImport.info[intWeekStartforMonth[intMonthTmp] + i].total_precipitation;
+            fltRainDurCur[i] = dataImport.info[intWeekStartforMonth[intMonthTmp] + i].total_precipitation;
+
+
+
+            /*
             fltMaxTempCur[i] = dataManager.fltMaxTemp[intWeekStartforMonth[intMonthTmp] + i];
             fltMinTempCur[i] = dataManager.fltMinTemp[intWeekStartforMonth[intMonthTmp] + i];
             fltRainCur[i] = dataManager.fltRain[intWeekStartforMonth[intMonthTmp] + i];
             fltRainDurCur[i] = dataManager.fltRainTime[intWeekStartforMonth[intMonthTmp] + i];
+            */
+
 
         }
         fltGrowthMonth = 0;

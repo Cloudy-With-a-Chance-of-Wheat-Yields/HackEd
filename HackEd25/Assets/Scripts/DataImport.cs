@@ -33,14 +33,17 @@ public class WeatherDataEntry {
 
 public class DataImport : MonoBehaviour
 {
+
+    public WeatherDataEntry[] info;
+
     IEnumerator ContactAPI()
     {
-        using (UnityWebRequest request = UnityWebRequest.Get("https://hacked-zg4z.onrender.com/2021"))
+        using (UnityWebRequest request = UnityWebRequest.Get("https://hacked-zg4z.onrender.com/?weather=2021"))
         {
             yield return request.SendWebRequest();
             string rawdata = request.downloadHandler.text;
             Debug.Log(rawdata);
-            WeatherDataEntry[] info = JsonHelper.FromJson<WeatherDataEntry>("{ \"Items\":" + rawdata + "}");
+            info = JsonHelper.FromJson<WeatherDataEntry>("{ \"Items\":" + rawdata + "}");
             Debug.Log(info[0].max_temperature);
 
         } 

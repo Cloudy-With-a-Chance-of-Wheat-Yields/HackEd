@@ -3,47 +3,57 @@ using UnityEngine;
 
 public class PlantsGrowing : MonoBehaviour
 {
+
+    [Header("Values")]
     public float plantHealth;
     public float growthRate; 
-
     public float growthY = 1;
     public float growthX = 1;
     public float growthZ = 1;
-
-    public bool highHumidity = false;
+    public bool isDiseased = false;
     public bool highHeat = false;
 
+    [Header("Objects needed")]
     public WeatherManager weatherManagerScript;
-
     public GameObject plantPrefab;
     public Material plantMaterial;
+
+    public Interventions interventionsScript;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     { 
         weatherManagerScript = FindFirstObjectByType<WeatherManager>().GetComponent<WeatherManager>();
-        //plantHealth = weatherManagerScript.plantHealth;
-        plantHealth = 1f;
-        growthRate = 0.5f;
+        plantHealth = weatherManagerScript.fltHealthCul;
+        growthRate = weatherManagerScript.fltGrowthCul;
+        isDiseased = weatherManagerScript.isDiseased;
 
         RefreshPlants();
+
+        //interventionsScript = transform.root.GetComponent<Interventions>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (highHeat == true) PlantWilting();
-        if (highHumidity == true) PlantDisease();
+
+        if(Input.GetKeyDown("Space"))
+        {
+            RefreshPlants();
+            if (highHeat == true) PlantWilting();
+            if (isDiseased == true) PlantDisease();
+            interventionsScript.FnGrowToGrass();
+        }
     }
 
     // increase y scale of plant by multiplying height by plant health
     public void PlantGrowth()
     {
         growthY *= growthRate;
-        growthX *= (growthRate/2);
-        growthZ *= (growthRate/2);
+        growthX *= (growthRate/4);
+        growthZ *= (growthRate/4);
         plantPrefab.transform.localScale = new Vector3(1, growthY, 1);
     }
 

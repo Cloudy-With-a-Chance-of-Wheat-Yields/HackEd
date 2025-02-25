@@ -68,6 +68,6 @@ public class InfoBoxController : MonoBehaviour
     {
         InfoBox.SetActive(true);
         infoTitle.text = "Funds";
-        infoText.text = "You expect to earn £2,000 per field, based on the current price of wheat. With 6 fields, your maximum possible earnings is £12,000. Your profit at the end will be determined by the sale of your wheat, minus the cost of seed and any interventions you have made (irrigation and spraying).";
+        infoText.text = "You have a starting budget of £2,500. Your profit at the end will be determined by the sale of your wheat, minus the cost of seed and any interventions you have made (irrigation and spraying).";
     }
 }

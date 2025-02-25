@@ -26,6 +26,10 @@ public class ButtonManager : MonoBehaviour
         Field[] fields = FindObjectsByType<Field>(FindObjectsSortMode.None);
         foreach(Field _field in fields)
         {
+            if(currentTool == 2 || currentTool == 3)
+            {
+                _field.transform.GetChild(0).gameObject.SetActive(false);
+            }
             _field.canInteract = true;
         }
     }
@@ -38,16 +42,16 @@ public class ButtonManager : MonoBehaviour
 
     public void Spray()
     {
-        ToolSelected();
         Debug.Log("Spray pestercide");
         currentTool = 2;
+        ToolSelected();
     }
 
     public void Irrigate()
     {
-        ToolSelected();
         Debug.Log("Irrigate the field");
         currentTool = 3;
+        ToolSelected();
     }
 
     public void Harvest()
@@ -57,8 +61,5 @@ public class ButtonManager : MonoBehaviour
         currentTool = 4;
     }
 
-/*    public void FollowMouse(RectTransform textTransform)
-    {
-        textTransform.position = Input.mousePosition + mouseOffset;
-    }*/
+
 }

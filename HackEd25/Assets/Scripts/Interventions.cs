@@ -7,19 +7,19 @@ public class Interventions : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        weatherManager = GetComponent<WeatherManager>();
     }
 
-    public void FnInterventionSow(Crop crop)
+    public void FnInterventionSow()
     {
         weatherManager.isPlanted = true;
-
+       
 
     }
 
     public void FnInterventionSpray()
     {
-
+        
 
     }
 
@@ -31,6 +31,6 @@ public class Interventions : MonoBehaviour
     public void FnInterventionHarvest()
     {
 
-
+        weatherManager.isPlanted = false;
     }
 }

@@ -36,46 +36,49 @@ async function FetchDatabase() {
 app.get("/", async function (request, response) { 
   var year = request.query["weather"];
   var connection = request.query["connection"];
-
-  // Return weather data for each year
-  switch(year) {
-    case "2021": // Return 1/1/2021 -> 1/1/2022 weather data 
-      response.json(year_one.rows);
-      break;
-    case "2022": // Return 1/1/2022 -> 1/1/2023 weather data 
-      response.json(year_two.rows);
-      break;
-    case "2023": // Return 1/1/2023 -> 1/1/2024 weather data 
-      response.json(year_three.rows);
-      break;
-    case "2024": // Return 1/1/2024 -> 1/1/2025 weather data 
-      response.json(year_four.rows);
-      break;
-  } 
-
-  // Data for the raspberry pi to connect and disconnect users
-  switch(connection) {
-    case "connect": // Provides a user id 
-      var j = 0;
-      connected_users.forEach(function (value, i) {
-        if (!value && j == 0) {
-          connected_users[i] = true;
-          j = i
+  if (year != null) {
+    // Return weather data for each year
+    switch(year) {
+      case "2021": // Return 1/1/2021 -> 1/1/2022 weather data 
+        response.json(year_one.rows);
+        break;
+      case "2022": // Return 1/1/2022 -> 1/1/2023 weather data 
+        response.json(year_two.rows);
+        break;
+      case "2023": // Return 1/1/2023 -> 1/1/2024 weather data 
+        response.json(year_three.rows);
+        break;
+      case "2024": // Return 1/1/2024 -> 1/1/2025 weather data 
+        response.json(year_four.rows);
+        break;
+    } 
+  } else {
+    // Data for the raspberry pi to connect and disconnect users
+    switch(connection) {
+      case "connect": // Provides a user id 
+        var j = 0;
+        connected_users.forEach(function (value, i) {
+          if (!value && j == 0) {
+            connected_users[i] = true;
+            j = i
+          }
+        });
+        response.json(j);
+        break;
+      case "getc": // Provides a user id
+        response.json(user_colours);   
+        break;
+      default: // Disconnects the user with the id provided in the query
+        var user = Number(request.query["connection"])
+        if (user != NaN) {
+          connected_users[user] = false;
         }
-      });
-      response.json(j);
-      break;
-    case "getc": // Provides a user id
-      response.json(user_colours);   
-      break;
-    default: // Disconnects the user with the id provided in the query
-      var user = Number(request.query["connection"])
-      if (user != NaN) {
-        connected_users[user] = false;
-      }
-      response.json("")
-      break;
+        response.json("")
+        break;
+    }
   }
+
+ 
 });
 
 // Set colour for a user's LEDs

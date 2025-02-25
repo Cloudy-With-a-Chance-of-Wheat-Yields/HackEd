@@ -36,6 +36,8 @@ public class Budget : MonoBehaviour
         isOperationAllowed = true; 
         if (isOverdraftAllowed || fltMoney > fltSowCost)
         {
+            Debug.Log("Sow cost called");
+            
             fltMoney -= fltSowCost;
             FnUpdateMoneyUI();
         }

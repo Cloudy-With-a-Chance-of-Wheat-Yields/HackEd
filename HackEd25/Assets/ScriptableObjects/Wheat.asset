@@ -31,9 +31,9 @@ MonoBehaviour:
   fltRainMax: 20
   fltTempMin: 6
   fltTempMax: 25
-  fltRainEffect: 1
-  fltTempEffect: 1
+  fltRainEffect: 0.001
+  fltTempEffect: 0.001
   fltRainHarmUpperThreshold: 15
   fltRainHarmLowerThreshold: 8
   fltTempHarmThreshold: 30
-  fltDiseasedChance: 0.02
+  fltDiseasedChance: 0.5

@@ -455,15 +455,24 @@ MonoBehaviour:
   - October
   - November
   - December
+  intWeekStartforMonth: 0000000001000000060000000a0000000e00000012000000160000001b0000002000000024000000280000002c00000030000000
   strCurrentMonth: 
-  fltMaxTempCur: 0
-  fltMinTempCur: 0
-  fltRainCur: 0
-  fltRainDurCur: 0
+  crop: {fileID: 0}
+  debugCrop: {fileID: 11400000, guid: 9b2635ed6211cef47a961979142d0c06, type: 2}
+  fltMaxTempCur: []
+  fltMinTempCur: []
+  fltRainCur: []
+  fltRainDurCur: []
   fltGrowthMonth: 0
-  fltGrowthCulm: 0
+  fltGrowthCul: 0
   fltHealthMonth: 0
-  fltHealthCulm: 0
+  fltHealthCul: 0
+  isDiseased: 0
+  isPlanted: 0
+  fltDiseaseProbability: 0
+  tempTmpHarm: 0
+  tempRainHarm: 0
+  temptmp: 0
 --- !u!1 &2033851579
 GameObject:
   m_ObjectHideFlags: 0

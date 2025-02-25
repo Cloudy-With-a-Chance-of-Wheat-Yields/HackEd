@@ -46,7 +46,10 @@ GameObject:
   - component: {fileID: 6727987899273172261}
   - component: {fileID: 6275560352363203571}
   - component: {fileID: 594385935544657412}
-  - component: {fileID: 2233201508696150287}
+  - component: {fileID: 3168920679078792725}
+  - component: {fileID: 3242741146427802062}
+  - component: {fileID: 7660583201329926565}
+  - component: {fileID: 5550936507238565353}
   m_Layer: 0
   m_Name: fieldWithPlants
   m_TagString: Untagged
@@ -123,8 +126,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2233201508696150287
-MeshCollider:
+--- !u!65 &3168920679078792725
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -141,10 +144,91 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: aaff327437b0be14f9c6d1be9b411708, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 4, y: 0.22, z: 4}
+  m_Center: {x: 0, y: 0.105000004, z: 0}
+--- !u!114 &3242741146427802062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6486049205888667171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3559954d62495074d9529d920c2963b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canInteract: 0
+  prefab: {fileID: 0}
+--- !u!114 &7660583201329926565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6486049205888667171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afc44c0e6485949438d8ce837506b9c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataManager: {fileID: 0}
+  dataImport: {fileID: 0}
+  gameOver: {fileID: 0}
+  intMonth: 0
+  strMonth: []
+  intWeekStartforMonth: 
+  strCurrentMonth: 
+  crop: {fileID: 0}
+  debugCrop: {fileID: 0}
+  fltMaxTempCur:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  fltMinTempCur:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  fltRainCur:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  fltRainDurCur:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  fltGrowthMonth: 0
+  fltGrowthCul: 0
+  fltHealthMonth: 0
+  fltHealthCul: 0
+  isDiseased: 0
+  isPlanted: 0
+  fltDiseaseProbability: 0
+  tempTmpHarm: 0
+  tempRainHarm: 0
+  temptmp: 0
+--- !u!114 &5550936507238565353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6486049205888667171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea839ade9b546f04390494f28ba381a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weatherManager: {fileID: 0}
 --- !u!1001 &4074685380206577911
 PrefabInstance:
   m_ObjectHideFlags: 0

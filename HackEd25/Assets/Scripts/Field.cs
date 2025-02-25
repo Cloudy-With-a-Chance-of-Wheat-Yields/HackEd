@@ -10,6 +10,7 @@ public class Field : MonoBehaviour
     {
         interventions = GetComponent<Interventions>();
         weatherManager = GetComponent<WeatherManager>();
+        
     }
     private void Update()
     {
@@ -21,6 +22,11 @@ public class Field : MonoBehaviour
         if (ButtonManager.instance.currentTool == 4)
         {
             transform.GetChild(0).gameObject.SetActive(weatherManager.isPlanted);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            interventions.FnGrowToGrass();
         }
 
     }

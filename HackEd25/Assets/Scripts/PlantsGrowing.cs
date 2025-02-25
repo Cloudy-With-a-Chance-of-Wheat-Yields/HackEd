@@ -16,6 +16,7 @@ public class PlantsGrowing : MonoBehaviour
     public GameObject plantPrefab;
     public Material plantMaterial;
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     { 
@@ -24,7 +25,7 @@ public class PlantsGrowing : MonoBehaviour
         plantHealth = 0.5f;
         growthRate = 0.5f;
 
-        plantMaterial.color = Color.white;
+        RefreshPlants();
 
     }
 
@@ -45,18 +46,22 @@ public class PlantsGrowing : MonoBehaviour
     public void RefreshPlants()
     {
         plantMaterial.color = Color.white;
+        plantMaterial.SetFloat("_SnowFade", 0);
     }
     
     // add disease shader to plants
     public void PlantDisease()
     {
-        
+        plantMaterial.SetColor("_SnowColor", new Color(0.45f, 0.25f, 0.25f, 0.5f)); 
+        plantMaterial.SetFloat("_SnowFade", 1);
+
     }
 
     // adjust sprite colour or shader to make plants yellow/wilting
     public void PlantWilting()
     {
-        plantMaterial.color *= new Color(1, 0.6f, 0, 0.5f);
+        plantMaterial.SetColor("_SnowColor", new Color(1, 0.6f, 0, 0.5f)); 
+        plantMaterial.SetFloat("_SnowFade", 1);
     }
 
 }

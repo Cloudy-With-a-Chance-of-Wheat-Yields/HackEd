@@ -119,6 +119,74 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &44679222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 44679225}
+  - component: {fileID: 44679224}
+  - component: {fileID: 44679223}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &44679223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44679222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &44679224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44679222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &44679225
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44679222}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &77962947
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,6 +275,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5cf7bd912a1ce3438b66de74f58bde7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mat: {fileID: 0}
+  mouseOffset: {x: 0, y: 6, z: 0}
+  sowText: {fileID: 0}
+  sprayText: {fileID: 0}
+  irrigateText: {fileID: 0}
+  harvestText: {fileID: 0}
+  sowTextTransform: {fileID: 0}
+  sprayTextTransform: {fileID: 0}
+  irrigateTextTransform: {fileID: 0}
+  harvestTextTransform: {fileID: 0}
 --- !u!1001 &649774181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -215,21 +293,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4402186326219712839, guid: 81dad7d5552c9a341b390c79338fe0a4, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+    - target: {fileID: 6485840283171615970, guid: 81dad7d5552c9a341b390c79338fe0a4, type: 3}
+      propertyPath: weatherManagerScript
       value: 
-      objectReference: {fileID: 2100000, guid: cc7c3120bbc06d04a9e452df04cb7a5f, type: 2}
+      objectReference: {fileID: 1345112669}
     - target: {fileID: 6662174415517180126, guid: 81dad7d5552c9a341b390c79338fe0a4, type: 3}
       propertyPath: m_Name
       value: Grass_02
-      objectReference: {fileID: 0}
-    - target: {fileID: 6662174415517613310, guid: 81dad7d5552c9a341b390c79338fe0a4, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6662174415517613310, guid: 81dad7d5552c9a341b390c79338fe0a4, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6662174415517613310, guid: 81dad7d5552c9a341b390c79338fe0a4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -271,43 +341,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8800494121616665705, guid: 81dad7d5552c9a341b390c79338fe0a4, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: cc7c3120bbc06d04a9e452df04cb7a5f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6662174415517180126, guid: 81dad7d5552c9a341b390c79338fe0a4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 649774183}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81dad7d5552c9a341b390c79338fe0a4, type: 3}
---- !u!1 &649774182 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6662174415517180126, guid: 81dad7d5552c9a341b390c79338fe0a4, type: 3}
-  m_PrefabInstance: {fileID: 649774181}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &649774183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649774182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 911e033a2fddf204fa2dee78a56b64d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  plantHealth: 0
-  growthRate: 0
-  growthY: 1
-  highHumidity: 0
-  highHeat: 0
-  weatherManagerScript: {fileID: 1345112669}
-  plantPrefab: {fileID: 649774182}
-  plantMaterial: {fileID: 2100000, guid: 382e2b1b7fbf94945963320a17603c7c, type: 2}
 --- !u!1 &754994160
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,7 +482,7 @@ Transform:
   m_GameObject: {fileID: 1098990093}
   serializedVersion: 2
   m_LocalRotation: {x: 0.4356781, y: -0, z: -0, w: 0.90010256}
-  m_LocalPosition: {x: -1030, y: -1436.5, z: 1479.83}
+  m_LocalPosition: {x: -1030, y: -1437.32, z: 1480.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -538,6 +576,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc44c0e6485949438d8ce837506b9c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataManager: {fileID: 0}
+  intMonth: 0
+  strMonth: []
+  intWeekStartforMonth: 
+  strCurrentMonth: 
+  crop: {fileID: 0}
+  debugCrop: {fileID: 0}
+  fltMaxTempCur:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  fltMinTempCur:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  fltRainCur:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  fltRainDurCur:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  fltGrowthMonth: 0
+  fltGrowthCul: 0
+  fltHealthMonth: 0
+  fltHealthCul: 0
+  isDiseased: 0
+  isPlanted: 0
+  fltDiseaseProbability: 0
+  tempTmpHarm: 0
+  tempRainHarm: 0
+  temptmp: 0
 --- !u!1 &2033851579
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,3 +749,4 @@ SceneRoots:
   - {fileID: 77962948}
   - {fileID: 558511548}
   - {fileID: 754994162}
+  - {fileID: 44679225}

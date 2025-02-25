@@ -12,7 +12,7 @@ dotenv.config();
 
 // set up our database connection
 const db = new pg.Pool({ connectionString: process.env.DATABASE_URL });
-
+const port = process.env.PORT;
 // Create variables for the data to start with
 var year_one, year_two, year_three, year_four;
 // Create variables related to the raspberry Pi part of the API
@@ -106,7 +106,7 @@ app.get("/colour", async function (request, response) {
 
 
 // start the server
-app.listen(8080, () => console.log("API Server is running on port 8080"));
+app.listen(port, () => console.log("API Server is running on port " + port));
 UpdateDatabaseCache();
 
 /*

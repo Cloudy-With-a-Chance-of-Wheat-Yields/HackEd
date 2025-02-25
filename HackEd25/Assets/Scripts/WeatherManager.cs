@@ -121,6 +121,12 @@ public class WeatherManager : MonoBehaviour
 
     void FnUpdateMonth()
     {
+        if (intMonthPlanted == -1)
+        {
+            intMonthPlanted = intMonth;
+
+        }
+
 
         for (int i = 0; i < 4; i++)
         {
@@ -163,6 +169,8 @@ public class WeatherManager : MonoBehaviour
         fltGrowthMonth = 0;
         fltHealthMonth = 0;
         fltDiseaseProbability = 0;
+        isSpray = false;
+        isIrrigate = false;
 
     }
 
@@ -244,14 +252,17 @@ public class WeatherManager : MonoBehaviour
 
        
 
-        if (!isDiseased && !isSpray)
+        if (!isDiseased )
         {
-            if (Random.Range(0,1.0f) < fltDiseaseProbability)
+
+            if (!isSpray)
             {
-                isDiseased = true;  
+                if (Random.Range(0, 1.0f) < fltDiseaseProbability)
+                {
+                    isDiseased = true;
+                }
+
             }
-
-
         }
 
         else

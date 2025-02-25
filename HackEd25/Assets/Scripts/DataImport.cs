@@ -33,7 +33,7 @@ public class WeatherDataEntry {
 
 public class DataImport : MonoBehaviour
 {
-
+    public Year data2021;
     public WeatherDataEntry[] info;
 
     IEnumerator ContactAPI()
@@ -52,7 +52,12 @@ public class DataImport : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartCoroutine(ContactAPI());
+
+
+        //   StartCoroutine(ContactAPI());
+        string rawdata = data2021.yearData.ToString();
+        info = JsonHelper.FromJson<WeatherDataEntry>("{ \"Items\":" + rawdata + "}");
+
     }
   
     // Update is called once per frame

@@ -40,15 +40,19 @@ app.get("/", async function (request, response) {
     // Return weather data for each year
     switch(year) {
       case "2021": // Return 1/1/2021 -> 1/1/2022 weather data 
+        console.log("2021 Weather Data Requested")
         response.json(year_one.rows);
         break;
       case "2022": // Return 1/1/2022 -> 1/1/2023 weather data 
+      console.log("2022 Weather Data Requested")
         response.json(year_two.rows);
         break;
       case "2023": // Return 1/1/2023 -> 1/1/2024 weather data 
+        console.log("2023 Weather Data Requested")
         response.json(year_three.rows);
         break;
       case "2024": // Return 1/1/2024 -> 1/1/2025 weather data 
+        console.log("2024 Weather Data Requested")
         response.json(year_four.rows);
         break;
     } 
@@ -63,9 +67,11 @@ app.get("/", async function (request, response) {
             j = i
           }
         });
+        console.log("Connection Requested")
         response.json(j);
         break;
       case "getc": // Provides a user id
+      console.log("User Colours Requested")
         response.json(user_colours);   
         break;
       default: // Disconnects the user with the id provided in the query
@@ -73,6 +79,7 @@ app.get("/", async function (request, response) {
         if (user != NaN) {
           connected_users[user] = false;
         }
+        console.log("Disconnect Requested")
         response.json("")
         break;
     }

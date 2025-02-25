@@ -69,7 +69,10 @@ app.get("/", async function (request, response) {
       response.json(user_colours);   
       break;
     default: // Disconnects the user with the id provided in the query
-      connected_users[request.query["connection"]] = false;
+      var user = Number(request.query["connection"])
+      if (user != NaN) {
+        connected_users[user] = false;
+      }
       response.json("")
       break;
   }

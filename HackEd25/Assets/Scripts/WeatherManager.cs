@@ -9,6 +9,7 @@ public class WeatherManager : MonoBehaviour
     [Header("Data")]
     [SerializeField] DataManager dataManager;
     [SerializeField] DataImport dataImport;
+    [SerializeField] GameOver gameOver;
     [SerializeField] int intMonth;
     [SerializeField] string[] strMonth;
     [SerializeField] int[] intWeekStartforMonth;
@@ -91,6 +92,13 @@ public class WeatherManager : MonoBehaviour
     void FnNewMonth()
     {
         intMonth += 1;
+
+        if (intMonth >12)
+
+        {
+            gameOver.FnGameOver();
+
+        }
         strCurrentMonth = strMonth[intMonth];
 
 

@@ -13,24 +13,25 @@ public class Interventions : MonoBehaviour
     public void FnInterventionSow()
     {
         weatherManager.isPlanted = true;
-       
-
+        weatherManager.intMonthPlanted = -1;
+       // cost function
     }
 
     public void FnInterventionSpray()
     {
-        
-
+        weatherManager.isSpray = true;
+        //cost function
     }
 
     public void FnInterventionIrrigate()
     {
-
-
+        weatherManager.isIrrigate = true;
+        //cost function
     }
     public void FnInterventionHarvest()
     {
-
         weatherManager.isPlanted = false;
+        //cost function
+        // revenue 
     }
 }

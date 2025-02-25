@@ -64,4 +64,10 @@ public class InfoBoxController : MonoBehaviour
         infoText.text = "Weather forecasts give an idea of the weather to come, but they are not always accurate. This can make it difficult for farmers to plan how to keep their crops healthy. You must weigh up whether the risk of drought or disease is high enough to justify the cost of interventions like irrigation and spraying pesticides, based on the weather forecast.";
     }
     
+    public void ShowFundsBox()
+    {
+        InfoBox.SetActive(true);
+        infoTitle.text = "Funds";
+        infoText.text = "You expect to earn £2,000 per field, based on the current price of wheat. With 6 fields, your maximum possible earnings is £12,000. Your profit at the end will be determined by the sale of your wheat, minus the cost of seed and any interventions you have made (irrigation and spraying).";
+    }
 }

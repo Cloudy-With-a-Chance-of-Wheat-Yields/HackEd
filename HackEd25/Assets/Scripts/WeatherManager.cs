@@ -76,8 +76,6 @@ public class WeatherManager : MonoBehaviour
 
         }
 
-
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             FnNewMonth();
@@ -100,7 +98,7 @@ public class WeatherManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FnNewMonth()
+    public void FnNewMonth()
     {
         intMonth += 1;
 

@@ -10,6 +10,9 @@ public class Crop : ScriptableObject
     public float fltTempMin;
     public float fltTempMax;
 
+    public float fltTempGrowEffect;
+    public float fltRainGrowEffect; 
+
     public float fltRainEffect;
     public float fltTempEffect;
 

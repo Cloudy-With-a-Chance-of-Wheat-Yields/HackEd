@@ -70,7 +70,7 @@ app.get("/", async function (request, response) {
       break;
     default: // Disconnects the user with the id provided in the query
       connected_users[request.query["connection"]] = false;
-      response.json(request.query["connection"]);
+      response.json("");
       break;
   }
 });

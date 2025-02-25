@@ -3003,6 +3003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04bc7a8cabef87eaa94de7b748da0e47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data2021: {fileID: 11400000, guid: a529998facf64904aa4169507ff2b471, type: 2}
   info: []
 --- !u!4 &1162162551
 Transform:
@@ -3536,106 +3537,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312381724}
   m_CullTransparentMesh: 1
---- !u!1 &1345112667
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1345112668}
-  - component: {fileID: 1345112669}
-  m_Layer: 0
-  m_Name: Weather Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1345112668
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1345112667}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1345112669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1345112667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afc44c0e6485949438d8ce837506b9c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dataManager: {fileID: 0}
-  dataImport: {fileID: 0}
-  gameOver: {fileID: 0}
-  intMonth: 0
-  strMonth:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  intWeekStartforMonth: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  strCurrentMonth: 
-  crop: {fileID: 0}
-  debugCrop: {fileID: 0}
-  fltMaxTempCur:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  fltMinTempCur:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  fltRainCur:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  fltRainDurCur:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  fltGrowthMonth: 0
-  fltGrowthCul: 0
-  fltHealthMonth: 0
-  fltHealthCul: 0
-  isDiseased: 0
-  isPlanted: 0
-  fltDiseaseProbability: 0
-  tempTmpHarm: 0
-  tempRainHarm: 0
-  temptmp: 0
 --- !u!1 &1364270704
 GameObject:
   m_ObjectHideFlags: 0
@@ -5797,7 +5698,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1098990096}
   - {fileID: 2033851581}
-  - {fileID: 1345112668}
   - {fileID: 558511548}
   - {fileID: 77962948}
   - {fileID: 1806089841}

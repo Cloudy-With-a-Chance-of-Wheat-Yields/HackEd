@@ -20,10 +20,10 @@ public class WeatherManager : MonoBehaviour
     [SerializeField] Crop crop;
     [SerializeField] Crop debugCrop;
     [Header("Weather Input")]
-    [SerializeField] float[] fltMaxTempCur = new float[5];
-    [SerializeField] float[] fltMinTempCur = new float[5];
-    [SerializeField] float[] fltRainCur = new float[5];
-    [SerializeField] float[] fltRainDurCur = new float[5];
+    public float[] fltMaxTempCur = new float[5];
+    public float[] fltMinTempCur = new float[5];
+    public float[] fltRainCur = new float[5];
+    public float[] fltRainDurCur = new float[5];
 
     [Header("Output")]
     public float fltGrowthMonth ;

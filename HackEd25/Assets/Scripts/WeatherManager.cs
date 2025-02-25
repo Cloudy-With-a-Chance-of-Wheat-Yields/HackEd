@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.Hierarchy;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
@@ -49,10 +50,17 @@ public class WeatherManager : MonoBehaviour
     public bool isSpray;
     public bool isIrrigate;
     [SerializeField] float fltIrrigateWater;
-    
 
 
+    [Header("Forecast")]
+    [SerializeField] TMP_Text[] txtTemp;
+    [SerializeField] TMP_Text[] txtRain;
+    [SerializeField] float fltErrorRange =0.1f;
+    [SerializeField] GameObject gmoSun;
+    [SerializeField] GameObject gmoCloud;
+    [SerializeField] float fltSunStart = 15;
 
+ 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -61,7 +69,7 @@ public class WeatherManager : MonoBehaviour
          fltRainCur = new float[5];
          fltRainDurCur = new float[5];
         fltHealthCul = 1.0f;
-       
+     
       
     }
 
@@ -113,6 +121,7 @@ public class WeatherManager : MonoBehaviour
 
 
         FnLoadMonthdata(intMonth);
+        FnForecast();
                 
     }
 
@@ -272,6 +281,51 @@ public class WeatherManager : MonoBehaviour
 
         Debug.Log("cul " + fltHealthCul);
         fltHealthCul -= fltHealthMonth;
+    }
+
+
+    public void FnForecast()
+    {
+
+        for(int i = 0; i < 4; i++)
+        {
+            float fltTempForecast = fltMaxTempCur[i];
+            float fltRainForecast = fltRainCur[i];
+
+            float flterror = i *fltErrorRange;
+
+            fltTempForecast *= 1+Random.Range(-flterror,flterror);
+            fltRainForecast *= 1 + Random.Range(-flterror, flterror);
+            float dispTempFor = Mathf.FloorToInt(fltTempForecast * 10);
+            float dispRainFor = Mathf.FloorToInt(fltRainForecast * 100);
+
+            txtTemp[i].text = dispTempFor/10 + "\u00B0C";
+            txtRain[i].text = dispRainFor/ 100 + " mm";
+
+            
+
+
+
+        }
+
+        if (fltRainCur[0] > 0)
+        {
+            gmoCloud.SetActive(true);
+
+        }
+
+        else
+        {
+            gmoCloud.SetActive(false);
+
+            if (fltMaxTempCur[0] > fltSunStart)
+            {
+                gmoSun.SetActive(true);
+
+
+            }
+        }
+
     }
 
 }

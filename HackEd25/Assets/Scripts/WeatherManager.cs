@@ -3,18 +3,21 @@ using UnityEngine;
 
 public class WeatherManager : MonoBehaviour
 {
+    // one weather manager is needed per crop
+
 
     [Header("Data")]
     [SerializeField] DataManager dataManager;
     [SerializeField] int intMonth;
-    [SerializeField] string[] strMonth = new string[13];
-    [SerializeField] int[] intWeekStartforMonth = new int[13];
+    [SerializeField] string[] strMonth;
+    [SerializeField] int[] intWeekStartforMonth;
     public string strCurrentMonth;
-    [SerializeField] int intWeeksinMonth;
+    //[SerializeField] int intWeeksinMonth;
 
 
     [Header("Crop")]
     [SerializeField] Crop crop;
+    [SerializeField] Crop debugCrop;
     [Header("Weather Input")]
     [SerializeField] float[] fltMaxTempCur = new float[5];
     [SerializeField] float[] fltMinTempCur = new float[5];
@@ -27,6 +30,7 @@ public class WeatherManager : MonoBehaviour
     public float fltHealthMonth;
     public float fltHealthCul ;
     public bool isDiseased;
+    public bool isPlanted;
 
     [Header ("Working")]
     [SerializeField] float fltDiseaseProbability;
@@ -43,20 +47,44 @@ public class WeatherManager : MonoBehaviour
           fltMinTempCur = new float[5];
          fltRainCur = new float[5];
          fltRainDurCur = new float[5];
-        intWeekStartforMonth = new int[13];
+        fltHealthCul = 1.0f;
+
+      
     }
 
     private void Update()
     {
         //debugging controls
 
+        if(Input.GetKeyDown(KeyCode.P))
+            {
+            isPlanted = true;
+            FnPlant(debugCrop);
+
+        }
+
+
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             FnNewMonth();
+
+
+            if (isPlanted)
+            {
+                FnUpdateMonth();
+
+            }
         }
     }
 
+
+    public void FnPlant(Crop newCrop)
+    {
+        crop = newCrop;
+
+
+    }
 
     // Update is called once per frame
     void FnNewMonth()
@@ -65,25 +93,26 @@ public class WeatherManager : MonoBehaviour
         strCurrentMonth = strMonth[intMonth];
 
 
+
         FnLoadMonthdata(intMonth);
+                
+    }
+
+
+    void FnUpdateMonth()
+    {
 
         for (int i = 0; i < 4; i++)
         {
 
             FnProcessWeek(i);
-
-            FnProcessMonthEnd();
-
-
-
+                    
 
         }
 
-
-
-
-
+        FnProcessMonthEnd();
     }
+
 
 
     void FnLoadMonthdata(int intMonthTmp)
@@ -94,20 +123,22 @@ public class WeatherManager : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
 
-            fltMaxTempCur[i] = dataManager.fltMaxTemp[intWeekStartforMonth[intMonthTmp + i]];
-            fltMinTempCur[i] = dataManager.fltMinTemp[intWeekStartforMonth[intMonthTmp + i]];
-            fltRainCur[i] = dataManager.fltRain[intWeekStartforMonth[intMonthTmp + i]];
-            fltRainDurCur[i] = dataManager.fltRainTime[intWeekStartforMonth[intMonthTmp + i]];
+            fltMaxTempCur[i] = dataManager.fltMaxTemp[intWeekStartforMonth[intMonthTmp] + i];
+            fltMinTempCur[i] = dataManager.fltMinTemp[intWeekStartforMonth[intMonthTmp] + i];
+            fltRainCur[i] = dataManager.fltRain[intWeekStartforMonth[intMonthTmp] + i];
+            fltRainDurCur[i] = dataManager.fltRainTime[intWeekStartforMonth[intMonthTmp] + i];
 
         }
+        fltGrowthMonth = 0;
+        fltHealthMonth = 0;
+        fltDiseaseProbability = 0;
+
     }
 
 
     void FnProcessWeek(int i)
     {
-        fltGrowthMonth = 0;
-        fltHealthMonth = 0;
-        fltDiseaseProbability = 0;
+      
         
          temptmp = (fltMaxTempCur[i] - crop.fltTempMin) / (crop.fltTempMax - crop.fltTempMin);
 
@@ -117,14 +148,13 @@ public class WeatherManager : MonoBehaviour
         if(temptmp >1)
         { temptmp = 1; }
 
-        fltGrowthMonth = crop.fltMonthGrow[intMonth] * temptmp;
+        fltGrowthMonth += crop.fltMonthGrow[intMonth] * temptmp;
 
          tempTmpHarm = (fltMaxTempCur[i] - crop.fltTempHarmThreshold);
 
         if (tempTmpHarm > 0)
         {
-            fltHealthMonth -= tempTmpHarm * crop.fltTempEffect;
-
+            fltHealthMonth += tempTmpHarm * crop.fltTempEffect;
 
         }
 
@@ -133,9 +163,9 @@ public class WeatherManager : MonoBehaviour
         if (tempRainHarm > 0)
         {
 
-            fltHealthMonth -= tempRainHarm * crop.fltRainEffect;
+            fltHealthMonth = tempRainHarm * crop.fltRainEffect;
 
-            fltDiseaseProbability += tempRainHarm * crop.fltDiseasedChance;
+            fltDiseaseProbability += tempRainHarm * crop.fltRainEffect * crop.fltDiseasedChance;
 
         }
 
@@ -148,7 +178,9 @@ public class WeatherManager : MonoBehaviour
         fltGrowthMonth /= 4;
 
         fltGrowthCul += fltGrowthMonth;
-        fltHealthCul += fltHealthMonth;
+        Debug.Log("month "+ fltHealthMonth);
+        fltHealthCul -= fltHealthMonth;
+        Debug.Log("cul "  + fltHealthCul);
 
         if (!isDiseased)
         {
@@ -163,4 +195,5 @@ public class WeatherManager : MonoBehaviour
 
 
     }
+
 }

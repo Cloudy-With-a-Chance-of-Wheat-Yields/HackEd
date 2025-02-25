@@ -342,6 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04bc7a8cabef87eaa94de7b748da0e47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data2021: {fileID: 11400000, guid: a529998facf64904aa4169507ff2b471, type: 2}
   info: []
 --- !u!1001 &792130314
 PrefabInstance:
@@ -693,7 +694,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc44c0e6485949438d8ce837506b9c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataManager: {fileID: 0}
   dataImport: {fileID: 643545524}
   gameOver: {fileID: 0}
   intMonth: 0

@@ -1,3 +1,4 @@
+using Unity.Hierarchy;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
@@ -33,12 +34,22 @@ public class WeatherManager : MonoBehaviour
     public float fltHealthCul ;
     public bool isDiseased;
     public bool isPlanted;
+    public int intMonthPlanted;
 
     [Header ("Working")]
     [SerializeField] float fltDiseaseProbability;
     [SerializeField] float tempTmpHarm;
     [SerializeField] float tempRainHarm;
     [SerializeField] float temptmp;
+    [SerializeField] float raintmp;
+    [SerializeField] float fltDiseaseEffect;
+
+
+    [Header("Interventions")]
+    public bool isSpray;
+    public bool isIrrigate;
+    [SerializeField] float fltIrrigateWater;
+    
 
 
 
@@ -159,8 +170,30 @@ public class WeatherManager : MonoBehaviour
     void FnProcessWeek(int i)
     {
       
-        
+        if(isIrrigate)
+        {
+            fltRainCur[i] += fltIrrigateWater;
+        }
+
+
+        // basic growth on basis of temp
          temptmp = (fltMaxTempCur[i] - crop.fltTempMin) / (crop.fltTempMax - crop.fltTempMin);
+        temptmp *= crop.fltTempGrowEffect;
+
+        // grouth modified by water
+
+        if (fltRainCur[i] < crop.fltRainMin)
+        {
+            raintmp = fltRainCur[i]/crop.fltTempMin;
+            raintmp *= crop.fltRainGrowEffect + crop.fltRainGrowEffect * raintmp ;
+
+        }
+
+        else
+        {
+            raintmp = 1;
+        }
+
 
         if(temptmp < 0)
         { temptmp = 0; }
@@ -168,7 +201,9 @@ public class WeatherManager : MonoBehaviour
         if(temptmp >1)
         { temptmp = 1; }
 
-        fltGrowthMonth += crop.fltMonthGrow[intMonth] * temptmp;
+        fltGrowthMonth += crop.fltMonthGrow[intMonth - intMonthPlanted+1] * temptmp * raintmp;
+
+        
 
          tempTmpHarm = (fltMaxTempCur[i] - crop.fltTempHarmThreshold);
 
@@ -198,11 +233,18 @@ public class WeatherManager : MonoBehaviour
         fltGrowthMonth /= 4;
 
         fltGrowthCul += fltGrowthMonth;
-        Debug.Log("month "+ fltHealthMonth);
-        fltHealthCul -= fltHealthMonth;
-        Debug.Log("cul "  + fltHealthCul);
 
-        if (!isDiseased)
+        if (fltGrowthCul>1)
+        {
+            fltGrowthCul = 1;
+        }
+
+
+
+
+       
+
+        if (!isDiseased && !isSpray)
         {
             if (Random.Range(0,1.0f) < fltDiseaseProbability)
             {
@@ -212,8 +254,15 @@ public class WeatherManager : MonoBehaviour
 
         }
 
+        else
+        {
+            fltHealthCul += fltDiseaseEffect;
 
+        }
+        Debug.Log("month " + fltHealthMonth);
 
+        Debug.Log("cul " + fltHealthCul);
+        fltHealthCul -= fltHealthMonth;
     }
 
 }

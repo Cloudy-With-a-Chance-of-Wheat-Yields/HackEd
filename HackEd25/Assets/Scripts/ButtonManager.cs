@@ -1,12 +1,30 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonManager : MonoBehaviour
 {
     public Material mat;
+    public Vector3 mouseOffset = new Vector3(0, 6, 0);
+    public Text sowText, sprayText, irrigateText, harvestText;
+    public RectTransform sowTextTransform, sprayTextTransform, irrigateTextTransform, harvestTextTransform;
+
+    void Update()
+    {
+        Text[] texts = { sowText, sprayText, irrigateText, harvestText };
+        RectTransform[] transforms = { sowTextTransform, sprayTextTransform, irrigateTextTransform, harvestTextTransform };
+
+        for (int i = 0; i < texts.Length; i++)
+        {
+            if (texts[i].gameObject.activeSelf)
+            {
+                FollowMouse(transforms[i]);
+            }
+        }
+    }
+
     public void Sow()
     {
         Debug.Log("Sow Seeds");
-        Hightlight();
     }
 
     public void Spray()
@@ -22,10 +40,10 @@ public class ButtonManager : MonoBehaviour
     public void Harvest()
     {
         Debug.Log("Harvest yeild");
-
     }
-    void Hightlight()
+
+    public void FollowMouse(RectTransform textTransform)
     {
-        mat.color = Color.white;
+        textTransform.position = Input.mousePosition + mouseOffset;
     }
 }

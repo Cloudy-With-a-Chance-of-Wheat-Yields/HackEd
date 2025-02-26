@@ -86,6 +86,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: matureWheat
       objectReference: {fileID: 0}
+    - target: {fileID: 4201126126288503607, guid: f160d0c8a4f943f4a9846a1431775400, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

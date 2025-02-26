@@ -3,6 +3,8 @@ using UnityEngine;
 public class MonthOnGlobal : MonoBehaviour
 {
     [SerializeField] WeatherManager[] weatherManagers;
+
+    public bool monthOn;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,10 +22,11 @@ public class MonthOnGlobal : MonoBehaviour
 
 
     {
-
+        monthOn = true;
         for (int i = 0; i < weatherManagers.Length; i++)
         {
             weatherManagers[i].FnUpdateMonth();
+            
 
 
         }
@@ -33,6 +36,15 @@ public class MonthOnGlobal : MonoBehaviour
             weatherManagers[i].FnNewMonth();
 
 
+            if (weatherManagers[i].intMonth == weatherManagers[i].intMonthPlanted + 1)
+            {
+                weatherManagers[i].gameObject.GetComponent<Interventions>().FnGrowToGrass();
+            }
+
+            if(weatherManagers[i].strCurrentMonth == "August")
+            {
+                weatherManagers[i].gameObject.GetComponent<Interventions>().FnGrowMature();
+            }
         }
 
     }

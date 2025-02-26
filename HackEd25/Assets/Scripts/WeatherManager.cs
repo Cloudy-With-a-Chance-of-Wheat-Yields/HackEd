@@ -12,7 +12,7 @@ public class WeatherManager : MonoBehaviour
     //[SerializeField] DataManager dataManager;
     [SerializeField] DataImport dataImport;
     [SerializeField] GameOver gameOver;
-    [SerializeField] int intMonth;
+    public int intMonth;
     [SerializeField] string[] strMonth;
     [SerializeField] int[] intWeekStartforMonth;
     public string strCurrentMonth;

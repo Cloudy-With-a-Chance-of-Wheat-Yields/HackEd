@@ -12,6 +12,7 @@ public class PlantsGrowing : MonoBehaviour
     public float growthZ;
     public bool isDiseased = false;
     public bool highHeat = false;
+    public bool isTimeToGrow = false;
 
     [Header("Objects needed")]
     public WeatherManager weatherManagerScript;
@@ -19,6 +20,7 @@ public class PlantsGrowing : MonoBehaviour
     public Material plantMaterial;
 
     Interventions interventionsScript;
+    MonthOnGlobal monthOnScript;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -32,6 +34,7 @@ public class PlantsGrowing : MonoBehaviour
         RefreshPlants();
 
         interventionsScript = GetComponentInParent<Interventions>();
+        monthOnScript = FindAnyObjectByType<MonthOnGlobal>().GetComponent<MonthOnGlobal>();
 
     }
 
@@ -39,12 +42,14 @@ public class PlantsGrowing : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (monthOnScript.monthOn == true)
         {
+            isTimeToGrow = true;
             Debug.Log("calling from PlantsGrowing");
             RefreshPlants();
             if (highHeat == true) PlantWilting();
             if (isDiseased == true) PlantDisease();
+            isTimeToGrow = false;
             
         }
     }

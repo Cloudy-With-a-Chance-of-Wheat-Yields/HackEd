@@ -91,4 +91,16 @@ public class Interventions : MonoBehaviour
             }
         }
     }
+
+    public void FnGrowMature()
+    {
+        Transform[] allChildren = GetComponentsInChildren<Transform>(true);
+        foreach (Transform child in allChildren)
+        {
+            if (child.name == "matureWheat")
+            {
+                child.gameObject.SetActive(true);
+            }
+        }
+    }
 }

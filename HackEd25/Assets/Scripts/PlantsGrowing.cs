@@ -66,9 +66,9 @@ public class PlantsGrowing : MonoBehaviour
     // increase y scale of plant by multiplying height by plant health
     public void PlantGrowth()
     {
-        growthRate = Mathf.Clamp01(growthRate + 0.01f); // Ensure it stays between 0 and 1
+        growthRate = Mathf.Clamp01(growthRate + 0.01f);
 
-        float scaleFactor = Mathf.Lerp(1f, 10f, growthRate); // Scale between 1x and 10x based on growthRate
+        float scaleFactor = Mathf.Lerp(1f, 10f, growthRate); 
 
         float growthX = initialScale.x * (scaleFactor / 4);
         float growthY = initialScale.y * (scaleFactor / 2);

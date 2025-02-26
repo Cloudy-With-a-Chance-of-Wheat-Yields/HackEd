@@ -17,14 +17,14 @@ public class PiFieldColour : MonoBehaviour
     
         if ( weatherManager.isPlanted)
         {
-            dataImport.field_colours[intFieldIndex] = 1;
+            dataImport.field_colours[intFieldIndex] = 255;
 
 
         }
 
         else if (weatherManager.isDiseased)
         {
-            dataImport.field_colours[intFieldIndex] = 255;
+            dataImport.field_colours[intFieldIndex] = 1;
         }
 
         else

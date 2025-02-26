@@ -1,6 +1,6 @@
 using TMPro;
-using Unity.Hierarchy;
-using UnityEditor.ShaderGraph.Internal;
+
+
 using UnityEngine;
 
 public class WeatherManager : MonoBehaviour

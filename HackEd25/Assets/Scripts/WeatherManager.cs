@@ -36,6 +36,7 @@ public class WeatherManager : MonoBehaviour
     public bool isDiseased;
     public bool isPlanted;
     public int intMonthPlanted;
+    [SerializeField] TMP_Text txtMonth;
 
     [Header ("Working")]
     [SerializeField] float fltDiseaseProbability;
@@ -69,7 +70,7 @@ public class WeatherManager : MonoBehaviour
          fltRainCur = new float[5];
          fltRainDurCur = new float[5];
         fltHealthCul = 1.0f;
-     
+        FnNewMonth();
       
     }
 
@@ -118,6 +119,8 @@ public class WeatherManager : MonoBehaviour
         }
         strCurrentMonth = strMonth[intMonth];
 
+        txtMonth.text = strCurrentMonth;
+
 
 
         FnLoadMonthdata(intMonth);
@@ -126,7 +129,7 @@ public class WeatherManager : MonoBehaviour
     }
 
 
-    void FnUpdateMonth()
+    public void FnUpdateMonth()
     {
         if (intMonthPlanted == -1)
         {
@@ -155,7 +158,10 @@ public class WeatherManager : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-            
+            Debug.Log( intMonthTmp +"-" + i);
+            Debug.Log("1st week: " + (intWeekStartforMonth[intMonthTmp] + i));
+            Debug.Log("hard " + dataImport.info[32].max_temperature);
+            Debug.Log("Temp: " + dataImport.info[intWeekStartforMonth[intMonthTmp] + i].max_temperature);
 
             fltMaxTempCur[i] = dataImport.info[intWeekStartforMonth[intMonthTmp] + i].max_temperature;
             fltMinTempCur[i] = dataImport.info[intWeekStartforMonth[intMonthTmp] + i].min_temperature;
@@ -311,6 +317,7 @@ public class WeatherManager : MonoBehaviour
         if (fltRainCur[0] > 0)
         {
             gmoCloud.SetActive(true);
+            gmoSun.SetActive(false);
 
         }
 
@@ -323,6 +330,10 @@ public class WeatherManager : MonoBehaviour
                 gmoSun.SetActive(true);
 
 
+            }
+            else
+            {
+                gmoSun.SetActive(true);
             }
         }
 

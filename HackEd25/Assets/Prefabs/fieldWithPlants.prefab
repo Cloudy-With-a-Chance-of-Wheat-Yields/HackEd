@@ -173,7 +173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc44c0e6485949438d8ce837506b9c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataManager: {fileID: 0}
   dataImport: {fileID: 0}
   gameOver: {fileID: 0}
   intMonth: 0
@@ -212,10 +211,23 @@ MonoBehaviour:
   fltHealthCul: 0
   isDiseased: 0
   isPlanted: 0
+  intMonthPlanted: 0
+  txtMonth: {fileID: 0}
   fltDiseaseProbability: 0
   tempTmpHarm: 0
   tempRainHarm: 0
   temptmp: 0
+  raintmp: 0
+  fltDiseaseEffect: 0
+  isSpray: 0
+  isIrrigate: 0
+  fltIrrigateWater: 0
+  txtTemp: []
+  txtRain: []
+  fltErrorRange: 0.1
+  gmoSun: {fileID: 0}
+  gmoCloud: {fileID: 0}
+  fltSunStart: 15
 --- !u!114 &5550936507238565353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,6 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weatherManager: {fileID: 0}
+  budget: {fileID: 0}
 --- !u!1001 &4074685380206577911
 PrefabInstance:
   m_ObjectHideFlags: 0

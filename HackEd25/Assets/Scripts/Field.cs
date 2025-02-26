@@ -10,6 +10,7 @@ public class Field : MonoBehaviour
     {
         interventions = GetComponent<Interventions>();
         weatherManager = GetComponent<WeatherManager>();
+        
     }
     private void Update()
     {
@@ -22,6 +23,15 @@ public class Field : MonoBehaviour
         {
             transform.GetChild(0).gameObject.SetActive(weatherManager.isPlanted);
         }
+
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     if (weatherManager.strCurrentMonth == "October")
+        //     {
+        //         interventions.FnGrowToGrass();
+        //     }
+            
+        // }
 
     }
     private void OnMouseEnter()

@@ -3,48 +3,78 @@ using UnityEngine;
 
 public class PlantsGrowing : MonoBehaviour
 {
+
+    [Header("Values")]
     public float plantHealth;
     public float growthRate; 
-
-    public float growthY = 1;
-    public float growthX = 1;
-    public float growthZ = 1;
-
-    public bool highHumidity = false;
+    public float growthY;
+    public float growthX;
+    public float growthZ;
+    public bool isDiseased = false;
     public bool highHeat = false;
+    public bool isTimeToGrow = false;
+    Vector3 initialScale;
 
+    [Header("Objects needed")]
     public WeatherManager weatherManagerScript;
-
     public GameObject plantPrefab;
     public Material plantMaterial;
+
+    Interventions interventionsScript;
+    MonthOnGlobal monthOnScript;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     { 
         weatherManagerScript = FindFirstObjectByType<WeatherManager>().GetComponent<WeatherManager>();
-        //plantHealth = weatherManagerScript.plantHealth;
-        plantHealth = 1f;
-        growthRate = 0.5f;
+        plantHealth = weatherManagerScript.fltHealthCul;
+        growthRate = weatherManagerScript.fltGrowthCul;
+        isDiseased = weatherManagerScript.isDiseased;
 
         RefreshPlants();
+
+        interventionsScript = GetComponentInParent<Interventions>();
+        monthOnScript = FindAnyObjectByType<MonthOnGlobal>().GetComponent<MonthOnGlobal>();
+
+        initialScale = plantPrefab.transform.localScale;
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (highHeat == true) PlantWilting();
-        if (highHumidity == true) PlantDisease();
+
+        if (monthOnScript.monthOn == true)
+        {
+            plantHealth = weatherManagerScript.fltHealthCul;
+            growthRate = weatherManagerScript.fltGrowthCul;
+            isDiseased = weatherManagerScript.isDiseased;
+
+            isTimeToGrow = true;
+            Debug.Log("calling from PlantsGrowing");
+            RefreshPlants();
+            if (highHeat == true) PlantWilting();
+            if (isDiseased == true) PlantDisease();
+            PlantGrowth();
+            isTimeToGrow = false;
+            
+        }
     }
 
     // increase y scale of plant by multiplying height by plant health
     public void PlantGrowth()
     {
-        growthY *= growthRate;
-        growthX *= (growthRate/2);
-        growthZ *= (growthRate/2);
-        plantPrefab.transform.localScale = new Vector3(1, growthY, 1);
+        growthRate = Mathf.Clamp01(growthRate + 0.01f);
+
+        float scaleFactor = Mathf.Lerp(1f, 10f, growthRate); 
+
+        float growthX = initialScale.x * (scaleFactor / 4);
+        float growthY = initialScale.y * (scaleFactor / 2);
+        float growthZ = initialScale.z * (scaleFactor / 4);
+
+        plantPrefab.transform.localScale = new Vector3(growthX, growthY, growthZ);
     }
 
     public void RefreshPlants()

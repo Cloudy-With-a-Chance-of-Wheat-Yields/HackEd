@@ -125,7 +125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6662174415517613310
 Transform:
   m_ObjectHideFlags: 0
@@ -181,7 +181,9 @@ MonoBehaviour:
   plantHealth: 0
   growthRate: 0
   growthY: 1
-  highHumidity: 0
+  growthX: 1
+  growthZ: 1
+  isDiseased: 0
   highHeat: 0
   weatherManagerScript: {fileID: 0}
   plantPrefab: {fileID: 6662174415517180126}

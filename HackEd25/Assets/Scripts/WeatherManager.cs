@@ -1,5 +1,6 @@
-using Unity.Hierarchy;
-using UnityEditor.ShaderGraph.Internal;
+using TMPro;
+
+
 using UnityEngine;
 
 public class WeatherManager : MonoBehaviour
@@ -11,7 +12,7 @@ public class WeatherManager : MonoBehaviour
     //[SerializeField] DataManager dataManager;
     [SerializeField] DataImport dataImport;
     [SerializeField] GameOver gameOver;
-    [SerializeField] int intMonth;
+    public int intMonth;
     [SerializeField] string[] strMonth;
     [SerializeField] int[] intWeekStartforMonth;
     public string strCurrentMonth;
@@ -35,6 +36,7 @@ public class WeatherManager : MonoBehaviour
     public bool isDiseased;
     public bool isPlanted;
     public int intMonthPlanted;
+    [SerializeField] TMP_Text txtMonth;
 
     [Header ("Working")]
     [SerializeField] float fltDiseaseProbability;
@@ -49,10 +51,17 @@ public class WeatherManager : MonoBehaviour
     public bool isSpray;
     public bool isIrrigate;
     [SerializeField] float fltIrrigateWater;
-    
 
 
+    [Header("Forecast")]
+    [SerializeField] TMP_Text[] txtTemp;
+    [SerializeField] TMP_Text[] txtRain;
+    [SerializeField] float fltErrorRange =0.1f;
+    [SerializeField] GameObject gmoSun;
+    [SerializeField] GameObject gmoCloud;
+    [SerializeField] float fltSunStart = 15;
 
+ 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -61,7 +70,7 @@ public class WeatherManager : MonoBehaviour
          fltRainCur = new float[5];
          fltRainDurCur = new float[5];
         fltHealthCul = 1.0f;
-       
+        FnNewMonth();
       
     }
 
@@ -110,14 +119,17 @@ public class WeatherManager : MonoBehaviour
         }
         strCurrentMonth = strMonth[intMonth];
 
+        txtMonth.text = strCurrentMonth;
+
 
 
         FnLoadMonthdata(intMonth);
+        FnForecast();
                 
     }
 
 
-    void FnUpdateMonth()
+    public void FnUpdateMonth()
     {
         if (intMonthPlanted == -1)
         {
@@ -146,7 +158,10 @@ public class WeatherManager : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-            
+            Debug.Log( intMonthTmp +"-" + i);
+            Debug.Log("1st week: " + (intWeekStartforMonth[intMonthTmp] + i));
+            Debug.Log("hard " + dataImport.info[32].max_temperature);
+            Debug.Log("Temp: " + dataImport.info[intWeekStartforMonth[intMonthTmp] + i].max_temperature);
 
             fltMaxTempCur[i] = dataImport.info[intWeekStartforMonth[intMonthTmp] + i].max_temperature;
             fltMinTempCur[i] = dataImport.info[intWeekStartforMonth[intMonthTmp] + i].min_temperature;
@@ -272,6 +287,60 @@ public class WeatherManager : MonoBehaviour
 
         Debug.Log("cul " + fltHealthCul);
         fltHealthCul -= fltHealthMonth;
+        if (fltHealthCul < .5f)
+        {
+            fltHealthCul =.5f;
+        }
+    }
+
+
+    public void FnForecast()
+    {
+
+        for(int i = 0; i < 4; i++)
+        {
+            float fltTempForecast = fltMaxTempCur[i];
+            float fltRainForecast = fltRainCur[i];
+
+            float flterror = i *fltErrorRange;
+
+            fltTempForecast *= 1+Random.Range(-flterror,flterror);
+            fltRainForecast *= 1 + Random.Range(-flterror, flterror);
+            float dispTempFor = Mathf.FloorToInt(fltTempForecast * 10);
+            float dispRainFor = Mathf.FloorToInt(fltRainForecast * 100);
+
+            txtTemp[i].text = dispTempFor/10 + "\u00B0C";
+            txtRain[i].text = dispRainFor/ 100 + " mm";
+
+            
+
+
+
+        }
+
+        if (fltRainCur[0] > 0)
+        {
+            gmoCloud.SetActive(true);
+            gmoSun.SetActive(false);
+
+        }
+
+        else
+        {
+            gmoCloud.SetActive(false);
+
+            if (fltMaxTempCur[0] > fltSunStart)
+            {
+                gmoSun.SetActive(true);
+
+
+            }
+            else
+            {
+                gmoSun.SetActive(true);
+            }
+        }
+
     }
 
 }

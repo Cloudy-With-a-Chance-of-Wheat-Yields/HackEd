@@ -54,7 +54,7 @@ public class InfoBoxController : MonoBehaviour
     {
         InfoBox.SetActive(true);
         infoTitle.text = "Spraying Pesticides";
-        infoText.text = "Spraying pesticides can destroy diseases and pests, which prevents them from causing damage. Farmers often spray pesticides multiple times throughout a growing season - but this can be expensive. There must be a balance between protecting crops to obtain a better yield and spending money on these preventative measures, which reduces net profit.";
+        infoText.text = "Spraying pesticides can destroy diseases and pests, which prevents them from causing damage. Farmers often spray pesticides multiple times throughout a growing season - but this can be expensive and it causes environmental issues. There must be a balance between protecting crops to obtain a better yield and spending money on these preventative measures, which reduces net profit and contaminates the environment.";
     }
 
     public void ShowForecastBox()
@@ -64,4 +64,10 @@ public class InfoBoxController : MonoBehaviour
         infoText.text = "Weather forecasts give an idea of the weather to come, but they are not always accurate. This can make it difficult for farmers to plan how to keep their crops healthy. You must weigh up whether the risk of drought or disease is high enough to justify the cost of interventions like irrigation and spraying pesticides, based on the weather forecast.";
     }
     
+    public void ShowFundsBox()
+    {
+        InfoBox.SetActive(true);
+        infoTitle.text = "Funds";
+        infoText.text = "You have a starting budget of £2,500. Your profit at the end will be determined by the sale of your wheat, minus the cost of seed and any interventions you have made (irrigation and spraying).";
+    }
 }

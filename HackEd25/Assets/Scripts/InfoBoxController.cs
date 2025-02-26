@@ -54,7 +54,7 @@ public class InfoBoxController : MonoBehaviour
     {
         InfoBox.SetActive(true);
         infoTitle.text = "Spraying Pesticides";
-        infoText.text = "Spraying pesticides can destroy diseases and pests, which prevents them from causing damage. Farmers often spray pesticides multiple times throughout a growing season - but this can be expensive. There must be a balance between protecting crops to obtain a better yield and spending money on these preventative measures, which reduces net profit.";
+        infoText.text = "Spraying pesticides can destroy diseases and pests, which prevents them from causing damage. Farmers often spray pesticides multiple times throughout a growing season - but this can be expensive and it causes environmental issues. There must be a balance between protecting crops to obtain a better yield and spending money on these preventative measures, which reduces net profit and contaminates the environment.";
     }
 
     public void ShowForecastBox()

@@ -13,6 +13,7 @@ public class PlantsGrowing : MonoBehaviour
     public bool isDiseased = false;
     public bool highHeat = false;
     public bool isTimeToGrow = false;
+    Vector3 initialScale;
 
     [Header("Objects needed")]
     public WeatherManager weatherManagerScript;
@@ -36,6 +37,9 @@ public class PlantsGrowing : MonoBehaviour
         interventionsScript = GetComponentInParent<Interventions>();
         monthOnScript = FindAnyObjectByType<MonthOnGlobal>().GetComponent<MonthOnGlobal>();
 
+        initialScale = plantPrefab.transform.localScale;
+
+
     }
 
     // Update is called once per frame
@@ -44,11 +48,16 @@ public class PlantsGrowing : MonoBehaviour
 
         if (monthOnScript.monthOn == true)
         {
+            plantHealth = weatherManagerScript.fltHealthCul;
+            growthRate = weatherManagerScript.fltGrowthCul;
+            isDiseased = weatherManagerScript.isDiseased;
+
             isTimeToGrow = true;
             Debug.Log("calling from PlantsGrowing");
             RefreshPlants();
             if (highHeat == true) PlantWilting();
             if (isDiseased == true) PlantDisease();
+            PlantGrowth();
             isTimeToGrow = false;
             
         }
@@ -57,10 +66,14 @@ public class PlantsGrowing : MonoBehaviour
     // increase y scale of plant by multiplying height by plant health
     public void PlantGrowth()
     {
-        growthRate *= 10;
-        growthY *= growthRate;
-        growthX *= (growthRate/4);
-        growthZ *= (growthRate/4);
+        growthRate = Mathf.Clamp01(growthRate + 0.01f); // Ensure it stays between 0 and 1
+
+        float scaleFactor = Mathf.Lerp(1f, 10f, growthRate); // Scale between 1x and 10x based on growthRate
+
+        float growthX = initialScale.x * (scaleFactor / 4);
+        float growthY = initialScale.y * (scaleFactor / 2);
+        float growthZ = initialScale.z * (scaleFactor / 4);
+
         plantPrefab.transform.localScale = new Vector3(growthX, growthY, growthZ);
     }
 

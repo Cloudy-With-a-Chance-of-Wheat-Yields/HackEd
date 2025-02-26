@@ -287,6 +287,10 @@ public class WeatherManager : MonoBehaviour
 
         Debug.Log("cul " + fltHealthCul);
         fltHealthCul -= fltHealthMonth;
+        if (fltHealthCul < .5f)
+        {
+            fltHealthCul =.5f;
+        }
     }
 
 
